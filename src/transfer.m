@@ -1,5 +1,6 @@
-a = im2double(imread('../inputs/transfer/rice.jpg')); % Input Texture
-b = im2double(imread('../inputs/transfer/bill.png')); % Input Image
+function output = transfer(textureFile, targetFile)
+a = im2double(imread(textureFile)); % Input Texture
+b = im2double(imread(targetFile)); % Input Image
 
 
 figure; imshow(a); truesize;
