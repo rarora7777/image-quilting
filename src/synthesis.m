@@ -10,7 +10,7 @@ function output = synthesis(filename)
 
     magnification = 2;
     % size of block is w×w
-    w = 24;
+    w = 50;
     % size of overlap
     o = ceil(w/6);
     % size of output image (w/ additional `o` rows and columns)
@@ -121,8 +121,9 @@ function output = synthesis(filename)
 
             % Smoothly merge the two patches at the boundary, if desired.
             % Currently, just choosing the boolean boundary.
-            smoothBoundaryGray = boundary;
-            smoothBoundaryRgb = repmat(boundary,[1 1 3]);
+            smoothBoundaryGray = imgaussfilt(boundary, 1.5); %boundary;
+%             smoothBoundaryGray = .5*ones(size(boundary));
+            smoothBoundaryRgb = repmat(smoothBoundaryGray,[1 1 3]);
 
             newOutPatch = ...
                 curOutPatch   .* (smoothBoundaryGray) + ...
